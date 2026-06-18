@@ -8,6 +8,14 @@
 <body>
     <h1>Cadastro</h1>
 
+    <div>
+        {% if status == '0' %}
+            <p>Cadastro realizado com sucesso!</p>
+        {% elif status == '1' %}
+            <p>Conta já existente, tente novamente!</p>
+        {% endif %}
+    </div>
+
     <form action="{% url 'cadastro' %}" method="POST"> {% csrf_token %}
 
         <label for="">Nome</label>
@@ -33,5 +41,7 @@
         <input type="submit" value="Cadastrar">
 
     </form>
+
+    
 </body>
 </html>

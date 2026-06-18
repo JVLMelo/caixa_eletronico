@@ -8,7 +8,8 @@ def inicio(request):
 
 def cadastro(request):
     if request.method == 'GET':
-        return render(request, 'cadastro.html')
+        status = request.GET.get('status')
+        return render(request, 'cadastro.html', {'status':status})
     else:
         nome = request.POST.get('nome')
         email = request.POST.get('email')
@@ -26,14 +27,13 @@ def cadastro(request):
         )
 
         if Usuario.objects.filter(email=email).exists():
-            return HttpResponse('Existe')
+            return redirect('/cadastro/?status=1')
         else:
             usuario.save()
-            return render(request, 'login.html')
+            return render(request, 'login.html') 
+            
         
-
         
-
 def login(request):
     if request.method == 'GET':
         return render(request, 'login.html')
