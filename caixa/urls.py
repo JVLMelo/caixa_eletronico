@@ -7,5 +7,6 @@ urlpatterns = [
     path('login/', views.login, name="login"),
     path('opcoes/', views.opcoes, name="opcoes"),
     path('opcoes/depostio', views.deposito, name="deposito"),
-    path('opcoes/saque', views.saque, name="saque")
+    path('opcoes/saque', views.saque, name="saque"),
+    path('opcoes/transferencia', views.transferencia, name="transferencia")
 ]

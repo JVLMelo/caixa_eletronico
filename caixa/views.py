@@ -87,4 +87,31 @@ def saque(request):
                 return render(request, 'opcoes.html')
         else:
             return render(request, 'saque.html')
-        
+
+def transferencia(request):
+    if request.method == 'GET':
+        return render(request, 'transferencia.html')
+    else:
+        email_paga = request.POST.get('email_paga')
+        senha = request.POST.get('senha')
+        email_bene = request.POST.get('email_bene')
+        valor = request.POST.get('valor')
+        item1 = Usuario.objects.get(email=email_paga)
+        item2 = Usuario.objects.get(email=email_bene)
+        valor_atual_paga = item1.valor
+        valor_atual_bene = item2.valor
+
+        if Usuario.objects.filter(email=email_paga).exists() & Usuario.objects.filter(senha=senha).exists() & Usuario.objects.filter(email=email_bene).exists():
+            if int(valor) > valor_atual_paga:
+                return render(request, 'saque.html')
+            else:
+                novo_valor_paga = valor_atual_paga - int(valor)
+                novo_valor_bene = valor_atual_bene + int(valor)
+                item1.valor = novo_valor_paga
+                item2.valor = novo_valor_bene
+                item1.save()
+                item2.save()
+
+                return render(request, 'opcoes.html')
+        else:
+            return render(request, 'transferencia.html')

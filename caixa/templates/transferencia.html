@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transferencia</title>
+</head>
+<body>
+    <h1>Transferencia</h1>
+
+    <form action="{% url 'transferencia' %}" method="POST"> {% csrf_token %}
+
+        <label for="">Email do pagador</label>
+        <input type="email" name="email_paga" id="">
+        <br>
+        <br>
+        <label for="">Senha do pagador</label>
+        <input type="password" name="senha" id="">
+        <br>
+        <br>
+        <label for="">Email do beneficiário</label>
+        <input type="email" name="email_bene" id="">
+        <br>
+        <br>
+        <label for="">Valor</label>
+        <input type="number" name="valor" id="">
+        <br>
+        <br>
+        <input type="submit" value="Transferir">
+
+    </form>
+</body>
+</html>
