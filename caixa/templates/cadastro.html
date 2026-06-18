@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+</head>
+<body>
+    <h1>Cadastro</h1>
+
+    <form action="{% url 'cadastro' %}" method="POST"> {% csrf_token %}
+
+        <label for="">Nome</label>
+        <input type="text" name="nome" id="">
+        <br>
+        <br>
+        <label for="">Email</label>
+        <input type="email" name="email" id="">
+        <br>
+        <br>
+        <label for="">Nome da mãe</label>
+        <input type="text" name="nome_mae" id="">
+        <br>
+        <br>
+        <label for="">Nome do pai</label>
+        <input type="text" name="nome_pai" id="">
+        <br>
+        <br>
+        <label for="">Senha</label>
+        <input type="password" name="senha" id="">
+        <br>
+        <br>
+        <input type="submit" value="Cadastrar">
+
+    </form>
+</body>
+</html>
