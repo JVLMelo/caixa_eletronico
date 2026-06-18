@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saque</title>
+</head>
+<body>
+    <h1>Saque</h1>
+
+    <form action="{% url 'saque' %}" method="POST"> {% csrf_token %}
+
+        <label for="">Email</label>
+        <input type="email" name="email" id="">
+        <br>
+        <br>
+        <label for="">Senha</label>
+        <input type="password" name="senha" id="">
+        <br>
+        <br>
+        <label for="">Valor</label>
+        <input type="number" name="valor" id="">
+        <br>
+        <br>
+        <input type="submit" value="Sacar">
+
+    </form>
+</body>
+</html>

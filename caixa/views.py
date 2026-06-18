@@ -60,8 +60,31 @@ def deposito(request):
         valor_atual = item.valor
         novo_valor = valor_atual + int(valor)
 
-        item.valor = novo_valor
-        item.save()
+        if Usuario.objects.filter(email=email).exists() & Usuario.objects.filter(senha=senha).exists():
+            item.valor = novo_valor
+            item.save()
+            return render(request, 'opcoes.html')
+        else:
+            return render(request, 'deposito.html')
+        
+def saque(request):
+    if request.method == 'GET':
+        return render(request, 'saque.html')
+    else:
+        email = request.POST.get('email')
+        senha = request.POST.get('senha')
+        valor = request.POST.get('valor')
+        item = Usuario.objects.get(email=email)
+        valor_atual = item.valor
 
-        return HttpResponse(item.valor)
+        if Usuario.objects.filter(email=email).exists() & Usuario.objects.filter(senha=senha).exists():
+            if int(valor) > valor_atual:
+                return render(request, 'saque.html')
+            else:
+                novo_valor = valor_atual - int(valor)
+                item.valor = novo_valor
+                item.save()
+                return render(request, 'opcoes.html')
+        else:
+            return render(request, 'saque.html')
         
